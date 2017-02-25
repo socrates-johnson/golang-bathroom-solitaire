@@ -23,17 +23,28 @@ import (
 // Main program
 //==============================================================================
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	// rand.Seed(time.Now().UnixNano())
+	rand.Seed(2)
+	t_start := time.Now()
 
 	// build base deck
 	deck_0 := buildDeck()
 
 	// shuffle deck
-	deck := shuffle(deck_0)
+	deck_down := shuffle(deck_0)
 
-	fmt.Println(deck_0)
+	// draw first four cards
+	fmt.Println(deck_down)
+	deck_up := make([]string, 0)
+	deck_down, deck_up = drawCard(deck_down, deck_up, 4)
+
 	fmt.Println()
-	fmt.Println(deck)
+	fmt.Println(deck_up)
+	fmt.Println(deck_down)
+	fmt.Println()
+
+	elapsed := time.Since(t_start)
+	fmt.Printf("Runtime: %s\n\n", elapsed)
 }
 
 
@@ -67,4 +78,15 @@ func shuffle(deck_in []string) []string {
 		deck_out[v] = deck_in[i]
 	}
 	return deck_out
+}
+
+//==============================================================================
+// Draw function
+//==============================================================================
+func drawCard(deck_down []string, deck_up []string, n int) ([]string, []string) {
+	for i := 0; i < n; i++ {
+		deck_up = append(deck_up, deck_down[:1]...)
+		deck_down = append(deck_down[1:])
+	}
+	return deck_down, deck_up
 }
