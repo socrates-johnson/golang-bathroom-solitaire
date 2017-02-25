@@ -15,7 +15,7 @@ package main
 
 import (
 	"fmt"
-  "math/rand"
+	"math/rand"
 )
 
 //==============================================================================
@@ -34,28 +34,28 @@ func main() {
 		}
 	}
 
-  // shuffle deck
-  deck := shuffle(deck_0, 7)
+	// shuffle deck 7 times
+	deck := shuffle(deck_0, 7)
 
-  fmt.Println(suits)
-  fmt.Println(suits[:2])
-  fmt.Println(cards)
-  fmt.Println(deck_0)
-  fmt.Println(deck)
-  fmt.Println(shuffle(deck_0, 1))
+	fmt.Println(suits)
+	fmt.Println(suits[:2])
+	fmt.Println(cards)
+	fmt.Println(deck_0)
+	fmt.Println(deck)
+	// fmt.Println(shuffle(deck_0, 1))
 }
 
 //==============================================================================
 // Function to shuffle deck
 //==============================================================================
 func shuffle(deck_in []string, n int) []string {
-  deck_out := make([]string, len(deck_in))
-  for i := 0; i < n; i++ {
-      perm := rand.Perm(len(deck_in))
-      for i, v := range perm {
-          deck_out[v] = deck_in[i]
-      }
-      deck_in = deck_out
-  }
-  return deck_out
+	deck_out := make([]string, len(deck_in))
+	for i := 0; i < n; i++ {
+		perm := rand.Perm(len(deck_in))
+		for i, v := range perm {
+			deck_out[v] = deck_in[i]
+		}
+		deck_in = deck_out
+	}
+	return deck_out
 }
