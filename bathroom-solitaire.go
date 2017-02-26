@@ -41,7 +41,7 @@ func main() {
 
 		// draw first four cards
 		deck_up := make([]string, 0)
-		deck_down, deck_up = drawCard(deck_down, deck_up, 5)
+		deck_down, deck_up = drawCard(deck_down, deck_up, 4)
 
 		// eliminate cards until deck_down is emtpy
 		for len(deck_down) > 0 {
